@@ -1,0 +1,19 @@
+{
+  "name": "ant",
+  "version": "0.1.0",
+  "description": "Screenshot organiser",
+  "main": "src/index.mjs",
+  "repository": "https://github.com/ChalkPE/ant",
+  "author": "Chalk <chalkpe@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node --no-warnings --experimental-modules src/index.mjs"
+  },
+  "dependencies": {
+    "fast-glob": "^2.2.4",
+    "inquirer": "^6.2.1"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
