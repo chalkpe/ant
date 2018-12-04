@@ -1,10 +1,14 @@
-import glob from 'fast-glob'
-import inquirer from 'inquirer'
-
-import load from './config'
+import load from './loader'
+import find from './finder'
+import move from './mover'
 
 async function main () {
-  console.log(await load())
+  const rc = await load()
+  const found = await Promise.all(rc.sources.map(find))
+
+  for (let list of found) {
+    await Promise.all(list.map(item => move(rc, item)))
+  }
 }
 
 main()

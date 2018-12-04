@@ -1,11 +1,9 @@
-import {join} from 'path'
-import {homedir} from 'os'
-import {readFile} from 'fs'
+import fs from 'fs'
+import { join } from 'path'
+import { homedir } from 'os'
+import go from './go'
 
-import go from './util/go'
-import {promisify} from 'util'
-
-const read = promisify(readFile)
+const read = fs.promises.readFile
 const valid = s => s => s.name && s.path && s.rule
 
 export default async function load (dir = homedir()) {

@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {
+      "name": "FINAL FANTASY XIV",
+      "rule": "ffxiv_[YYYY][MM][DD]_[HH][mm][ss].png",
+      "path": "[homedir]\\Documents\\My Games\\FINAL FANTASY XIV - KOREA\\screenshots"
+    }, {
+      "name": "Hearthstone",
+      "rule": "Hearthstone Screenshot [MM]-[DD]-[YY] [HH].[mm].[ss].png",
+      "path": "[homedir]\\Desktop"
+    }, {
+      "name": "Heroes of the Storm",
+      "rule": "Screenshot[YYYY]-[MM]-[DD] [HH]_[mm]_[ss].jpg",
+      "path": "[homedir]\\Documents\\Heroes of the Storm\\Screenshots"
+    }
+  ],
+  "target": {
+    "path": "D:\\Screenshots",
+    "rule": "[name]/[YYYY]-[MM]"
+  }
+}

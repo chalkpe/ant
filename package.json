@@ -10,8 +10,7 @@
     "start": "node --no-warnings --experimental-modules src/index.mjs"
   },
   "dependencies": {
-    "fast-glob": "^2.2.4",
-    "inquirer": "^6.2.1"
+    "mv": "^2.1.1"
   },
   "devDependencies": {
     "standard": "^12.0.1"
