@@ -7,6 +7,7 @@
   "author": "Chalk <chalkpe@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "test": "standard",
     "start": "node --no-warnings --experimental-modules src/index.mjs"
   },
   "dependencies": {
