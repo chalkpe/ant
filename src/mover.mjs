@@ -1,15 +1,10 @@
-import mv from 'mv'
 import { join } from 'path'
-import { promisify } from 'util'
+import move from 'move-file'
 
-const move = promisify(mv)
-
-export default async function move (rc, res) {
-  const p = Object.entries(res).reduce((str, [k, v]) =>
-    str.replace(`[${k}]`, v), rc.target.rule)
-
-  const dstDir = join(rc.target.path, p)
-  const dst = join(dstDir, res.filename)
+export default async function move ({ target }, res) {
+  const dst = join(target.path, p, res.filename)
+  const p = Object.entries(res)
+    .reduce((r, [k, v]) => r.replace(`[${k}]`, v), target.rule)
 
   await move(res.path, dst)
   console.log('moved', res.path, 'to', dst)
