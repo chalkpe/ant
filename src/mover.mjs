@@ -1,5 +1,8 @@
 import mv from 'mv'
 import { join } from 'path'
+import { promisify } from 'util'
+
+const move = promisify(mv)
 
 export default async function move (rc, res) {
   const p = Object.entries(res).reduce((str, [k, v]) =>
@@ -8,6 +11,6 @@ export default async function move (rc, res) {
   const dstDir = join(rc.target.path, p)
   const dst = join(dstDir, res.filename)
 
-  await mv(res.path, dst)
+  await move(res.path, dst)
   console.log('moved', res.path, 'to', dst)
 }
