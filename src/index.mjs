@@ -7,7 +7,7 @@ async function main () {
   const found = await Promise.all(rc.sources.map(find))
 
   for (let list of found) {
-    await Promise.all(list.map(item => move(rc, item)))
+    for (let item of list) await move(rc, item)
   }
 }
 
