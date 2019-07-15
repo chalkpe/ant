@@ -4,35 +4,38 @@ import { normalize, join } from 'path'
 
 const list = ['YYYY', 'YY', 'MM', 'DD', 'HH', 'mm', 'ss', 'SS', 'SSS']
 
-function parseRule (rule) {
-  const regex = list.reduce((str, k) =>
-    str.replace(`[${k}]`, `(?<${k}>${'\\d'.repeat(k.length)})`), rule)
+function parseRules (rules) {
+  return rules.map(rule => {
+    const regex = list.reduce((str, k) =>
+      str.replace(`[${k}]`, `(?<${k}>${'\\d'.repeat(k.length)})`), rule)
 
-  return new RegExp(regex.replace('.', '\\.'))
+    return new RegExp(regex.replace('.', '\\.'))
+  })
 }
 
 class Location {
-  constructor ({ name, rule, path }) {
+  constructor ({ name, path, rule, rules }) {
     this.name = name.trim()
-    this.rule = parseRule(rule)
+    this.rules = parseRules(rules || [rule])
     this.path = normalize(path.replace('[homedir]', homedir()))
   }
 
   async find () {
     const files = await fs.promises.readdir(this.path, 'utf8')
     const parsed = files.map(p => {
-      const m = this.rule.exec(p)
-      if (!m) return null
+      for (const rule of this.rules) {
+        const m = rule.exec(p)
+        return m && {
+          filename: p,
+          name: this.name,
+          path: join(this.path, p),
 
-      const g = m.groups
-      return {
-        filename: p,
-        path: join(this.path, p),
-        name: this.name,
-
-        ...g,
-        YY: g.YY || g.YYYY.slice(2),
-        YYYY: g.YYYY || '20'.concat(g.YY)
+          ...m.groups,
+          YY: m.groups.YY || m.groups.YYYY.slice(2),
+          YYYY: m.groups.YYYY || '20' + m.groups.YY,
+          SS: m.groups.SS || m.groups.SSS.slice(0, 2),
+          SSS: m.groups.SSS || m.groups.SS + '0',
+        }
       }
     })
 
