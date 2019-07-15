@@ -25,7 +25,7 @@ class Location {
     const parsed = files.map(p => {
       for (const rule of this.rules) {
         const m = rule.exec(p)
-        return m && {
+        if (m) return {
           filename: p,
           name: this.name,
           path: join(this.path, p),
