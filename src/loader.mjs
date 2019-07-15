@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { join } from 'path'
 import { homedir } from 'os'
-import go from './go'
+import go from './go.mjs'
 
 const valid = s => s => s.name && s.path && s.rule
 

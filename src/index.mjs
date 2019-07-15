@@ -1,6 +1,6 @@
-import load from './loader'
-import find from './finder'
-import move from './mover'
+import load from './loader.mjs'
+import find from './finder.mjs'
+import move from './mover.mjs'
 
 async function main () {
   const rc = await load()

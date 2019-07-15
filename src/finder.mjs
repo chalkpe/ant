@@ -2,7 +2,7 @@ import fs from 'fs'
 import { homedir } from 'os'
 import { normalize, join } from 'path'
 
-const list = ['YYYY', 'YY', 'MM', 'DD', 'HH', 'mm', 'ss']
+const list = ['YYYY', 'YY', 'MM', 'DD', 'HH', 'mm', 'ss', 'SS', 'SSS']
 
 function parseRule (rule) {
   const regex = list.reduce((str, k) =>
