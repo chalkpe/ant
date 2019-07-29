@@ -33,8 +33,8 @@ class Location {
           ...m.groups,
           YY: m.groups.YY || m.groups.YYYY.slice(2),
           YYYY: m.groups.YYYY || '20' + m.groups.YY,
-          SS: m.groups.SS || m.groups.SSS.slice(0, 2),
-          SSS: m.groups.SSS || m.groups.SS + '0',
+          SS: m.groups.SS || m.groups.SSS && m.groups.SSS.slice(0, 2) || '00',
+          SSS: m.groups.SSS || m.groups.SS && m.groups.SS + '0' || '000',
         }
       }
     })
