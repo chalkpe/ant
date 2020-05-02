@@ -1,6 +1,6 @@
 {
   "name": "ant",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Screenshot organiser",
   "main": "src/index.mjs",
   "repository": "https://github.com/ChalkPE/ant",
@@ -11,10 +11,10 @@
     "start": "node --no-warnings --experimental-modules src/index.mjs"
   },
   "dependencies": {
-    "move-file": "^1.2.0"
+    "move-file": "^2.0.0"
   },
   "devDependencies": {
-    "standard": "^13.0.2"
+    "standard": "^14.3.3"
   },
   "engines": {
     "node": ">=11"
