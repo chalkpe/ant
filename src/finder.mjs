@@ -45,7 +45,7 @@ class Location {
     const parsed = await Promise.all(files.map(async p => {
       for (const rule of this.rules) {
         const m = rule.exec(p)
-        if (!m) return
+        if (!m) continue
 
         const path = join(this.path, p)
         const groups = { ...m.groups, ...(await getFileCreatedAt(path)) }
