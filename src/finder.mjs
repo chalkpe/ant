@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { homedir } from 'os'
 import { normalize, join } from 'path'
+import go from './go.mjs'
 
 const list = ['YYYY', 'YY', 'MM', 'DD', 'HH', 'mm', 'ss', 'SS', 'SSS']
 
@@ -21,7 +22,9 @@ class Location {
   }
 
   async find () {
-    const files = await fs.promises.readdir(this.path, 'utf8')
+    const [files, err] = await go(fs.promises.readdir(this.path, 'utf8'))
+    if (err) return []
+
     const parsed = files.map(p => {
       for (const rule of this.rules) {
         const m = rule.exec(p)
