@@ -14,6 +14,23 @@ function parseRules (rules) {
   })
 }
 
+async function getFileCreatedAt(path) {
+  const [stats, err] = await go(fs.promises.stat(path))
+  if (err) return {}
+
+  return {
+    YYYY: String(stats.birthtime.getFullYear()),
+    YY: String(stats.birthtime.getFullYear()).slice(2),
+    MM: String(stats.birthtime.getMonth() + 1).padStart(2, '0'),
+    DD: String(stats.birthtime.getDate()).padStart(2, '0'),
+    HH: String(stats.birthtime.getHours()).padStart(2, '0'),
+    mm: String(stats.birthtime.getMinutes()).padStart(2, '0'),
+    ss: String(stats.birthtime.getSeconds()).padStart(2, '0'),
+    SS: String(stats.birthtime.getMilliseconds()).padStart(3, '0').slice(0, 2),
+    SSS: String(stats.birthtime.getMilliseconds()).padStart(3, '0'),
+  }
+}
+
 class Location {
   constructor ({ name, path, rule, rules }) {
     this.name = name.trim()
@@ -25,22 +42,27 @@ class Location {
     const [files, err] = await go(fs.promises.readdir(this.path, 'utf8'))
     if (err) return []
 
-    const parsed = files.map(p => {
+    const parsed = await Promise.all(files.map(async p => {
       for (const rule of this.rules) {
         const m = rule.exec(p)
-        if (m) return {
+        if (!m) return
+
+        const path = join(this.path, p)
+        const groups = { ...m.groups, ...(await getFileCreatedAt(path)) }
+
+        return {
           filename: p,
           name: this.name,
-          path: join(this.path, p),
+          path,
 
-          ...m.groups,
-          YY: m.groups.YY || m.groups.YYYY.slice(2),
-          YYYY: m.groups.YYYY || '20' + m.groups.YY,
-          SS: m.groups.SS || m.groups.SSS && m.groups.SSS.slice(0, 2) || '00',
-          SSS: m.groups.SSS || m.groups.SS && m.groups.SS + '0' || '000',
+          ...groups,
+          YY: groups.YY || groups.YYYY.slice(2),
+          YYYY: groups.YYYY || '20' + groups.YY,
+          SS: groups.SS || groups.SSS && groups.SSS.slice(0, 2) || '00',
+          SSS: groups.SSS || groups.SS && groups.SS + '0' || '000',
         }
       }
-    })
+    }))
 
     return parsed.filter(v => v)
   }
