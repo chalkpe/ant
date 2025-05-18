@@ -1,22 +1,26 @@
 {
   "name": "ant",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Screenshot organiser",
-  "main": "src/index.mjs",
-  "repository": "https://github.com/ChalkPE/ant",
-  "author": "Chalk <chalkpe@gmail.com>",
+  "repository": "https://github.com/chalkpe/ant",
   "license": "MIT",
+  "author": "Chalk <chalkpe@gmail.com>",
+  "type": "module",
+  "main": "src/index.mjs",
   "scripts": {
-    "test": "standard",
-    "start": "node --no-warnings --experimental-modules src/index.mjs"
+    "start": "node ."
+  },
+  "prettier": {
+    "printWidth": 140,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
   },
   "dependencies": {
-    "move-file": "^2.0.0"
+    "move-file": "^3.1.0"
   },
   "devDependencies": {
-    "standard": "^14.3.3"
-  },
-  "engines": {
-    "node": ">=11"
+    "@types/node": "^22.15.18"
   }
 }

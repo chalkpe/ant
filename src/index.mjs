@@ -2,7 +2,7 @@ import load from './loader.mjs'
 import find from './finder.mjs'
 import move from './mover.mjs'
 
-async function main () {
+async function main() {
   const rc = await load()
   const found = await Promise.all(rc.sources.map(find))
 
@@ -13,4 +13,4 @@ async function main () {
 
 main()
   .then(() => process.exit(0))
-  .catch(err => console.error(err))
+  .catch((err) => console.error(err))

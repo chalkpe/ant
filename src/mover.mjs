@@ -1,5 +1,5 @@
 import { join } from 'path'
-import mv from 'move-file'
+import { moveFile } from 'move-file'
 
 export default async function move ({ target }, res) {
   const p = Object.entries(res)
@@ -7,6 +7,6 @@ export default async function move ({ target }, res) {
 
   const dst = join(target.path, p, res.filename)
 
-  await mv(res.path, dst)
+  await moveFile(res.path, dst)
   console.log('moved', res.path, 'to', dst)
 }
