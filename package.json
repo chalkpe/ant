@@ -8,19 +8,14 @@
   "type": "module",
   "main": "src/index.mjs",
   "scripts": {
-    "start": "node ."
-  },
-  "prettier": {
-    "printWidth": 140,
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5"
+    "start": "node .",
+    "lint": "biome check ."
   },
   "dependencies": {
     "move-file": "^3.1.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.18"
+    "@biomejs/biome": "2.3.10",
+    "@types/node": "^25.0.3"
   }
 }

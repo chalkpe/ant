@@ -7,7 +7,7 @@ export default function go(v) {
         } catch (err) {
           reject(err)
         }
-      })
+      }),
     )
   }
 

@@ -1,9 +1,11 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { moveFile } from 'move-file'
 
-export default async function move ({ target }, res) {
-  const p = Object.entries(res)
-    .reduce((r, [k, v]) => r.replace(`[${k}]`, v), target.rule)
+export default async function move({ target }, res) {
+  const p = Object.entries(res).reduce(
+    (r, [k, v]) => r.replace(`[${k}]`, v),
+    target.rule,
+  )
 
   const dst = join(target.path, p, res.filename)
 

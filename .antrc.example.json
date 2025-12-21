@@ -1,21 +1,38 @@
 {
   "sources": [
     {
-      "name": "FINAL FANTASY XIV",
-      "rule": "ffxiv_[YYYY][MM][DD]_[HH][mm][ss].png",
-      "path": "[homedir]\\Documents\\My Games\\FINAL FANTASY XIV - KOREA\\screenshots"
-    }, {
+      "name": "FINAL FANTASY XIV - KOREA",
+      "path": "/mnt/c/Users/user/Documents/My Games/FINAL FANTASY XIV - KOREA/screenshots",
+      "rule": "ffxiv_[YYYY][MM][DD]_[HH][mm][ss]_[SSS].png"
+    },
+    {
+      "name": "FINAL FANTASY XIV - A Realm Reborn",
+      "path": "/mnt/c/Users/user/Documents/My Games/FINAL FANTASY XIV - A Realm Reborn/screenshots",
+      "rule": "ffxiv_[MM][DD][YYYY]_[HH][mm][ss]_[SSS].png"
+    },
+    {
       "name": "Hearthstone",
-      "rule": "Hearthstone Screenshot [MM]-[DD]-[YY] [HH].[mm].[ss].png",
-      "path": "[homedir]\\Desktop"
-    }, {
+      "path": "/mnt/c/Users/user/Desktop",
+      "rule": "Hearthstone Screenshot [MM]-[DD]-[YY] [HH].[mm].[ss].png"
+    },
+    {
       "name": "Heroes of the Storm",
-      "rule": "Screenshot[YYYY]-[MM]-[DD] [HH]_[mm]_[ss].jpg",
-      "path": "[homedir]\\Documents\\Heroes of the Storm\\Screenshots"
+      "path": "/mnt/c/Users/user/Documents/Heroes of the Storm/Screenshots",
+      "rule": "Screenshot[YYYY]-[MM]-[DD] [HH]_[mm]_[ss].jpg"
+    },
+    {
+      "name": "Overwatch",
+      "path": "/mnt/c/Users/user/Documents/Overwatch/ScreenShots/Overwatch",
+      "rule": "ScreenShot_[YY]-[MM]-[DD]_[HH]-[mm]-[ss]-[SSS].jpg"
+    },
+    {
+      "name": "Minecraft",
+      "path": "/mnt/c/Users/user/AppData/Roaming/.minecraft/screenshots",
+      "rule": "[YYYY]-[MM]-[DD]_[HH].[mm].[ss].png"
     }
   ],
   "target": {
-    "path": "D:\\Screenshots",
+    "path": "/mnt/d/Drive/Screenshots",
     "rule": "[name]/[YYYY]-[MM]"
   }
 }

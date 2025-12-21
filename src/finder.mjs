@@ -1,13 +1,16 @@
-import fs from 'fs'
-import { homedir } from 'os'
-import { normalize, join } from 'path'
+import fs from 'node:fs'
+import { homedir } from 'node:os'
+import { join, normalize } from 'node:path'
 import go from './go.mjs'
 
 const list = ['YYYY', 'YY', 'MM', 'DD', 'HH', 'mm', 'ss', 'SS', 'SSS']
 
 function parseRules(rules) {
   return rules.map((rule) => {
-    const regex = list.reduce((str, k) => str.replace(`[${k}]`, `(?<${k}>${'\\d'.repeat(k.length)})`), rule)
+    const regex = list.reduce(
+      (str, k) => str.replace(`[${k}]`, `(?<${k}>${'\\d'.repeat(k.length)})`),
+      rule,
+    )
     return new RegExp(regex.replace('.', '\\.'))
   })
 }
@@ -56,12 +59,12 @@ class Location {
 
             ...groups,
             YY: groups.YY || groups.YYYY.slice(2),
-            YYYY: groups.YYYY || '20' + groups.YY,
-            SS: groups.SS || (groups.SSS && groups.SSS.slice(0, 2)) || '00',
-            SSS: groups.SSS || (groups.SS && groups.SS + '0') || '000',
+            YYYY: groups.YYYY || `20${groups.YY}`,
+            SS: groups.SS || groups.SSS?.slice(0, 2) || '00',
+            SSS: groups.SSS || (groups.SS && `${groups.SS}0`) || '000',
           }
         }
-      })
+      }),
     )
 
     return parsed.filter((v) => v)

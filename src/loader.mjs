@@ -1,9 +1,10 @@
-import fs from 'fs'
-import { join } from 'path'
-import { homedir } from 'os'
+import fs from 'node:fs'
+import { homedir } from 'node:os'
+import { join } from 'node:path'
 import go from './go.mjs'
 
-const valid = (s) => (s) => s.name && s.path && s.rule
+const isValidSource = (s) => s.name && s.path && s.rule
+const isValidTarget = (t) => t.path && t.rule
 
 export default async function load(dir = homedir()) {
   const tg = join(dir, 'ant')
@@ -25,8 +26,8 @@ export default async function load(dir = homedir()) {
   if (errr || !obj) return def
 
   const { sources, target } = obj
-  if (!target || !valid(target)) return def
-  if (!Array.isArray(sources) || !sources.every(valid)) return def
+  if (!target || !isValidTarget(target)) return def
+  if (!Array.isArray(sources) || !sources.every(isValidSource)) return def
 
   return { sources, target }
 }
